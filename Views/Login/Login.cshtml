@@ -1,0 +1,183 @@
+﻿@model EntityFrameworkCore.Models.LoginViewModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Login";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - Hitachi Payment Services</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="~/css/auth.css" asp-append-version="true" />
+</head>
+<body>
+
+    <div class="container-fluid login-page">
+        <div class="row g-0">
+
+            <!-- Left Side Image -->
+            <div class="col-lg-7">
+                <div class="left-panel">
+
+                    <div class="overlay-content">
+                        <h3>Orchids The International School</h3>
+                        <p class="mb-0">
+                            Character • Competance • Career Goals
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Right Side Login -->
+            <div class="col-lg-5">
+                <div class="right-panel">
+
+                    <div class="login-box">
+
+                        <div class="text-center mb-5">
+                            <img src="~/images/School-Logo.jpg" class="auth-logo" alt="School logo" />
+                            
+                            <h2 class="login-title">
+                                Welcome To Orchids The International School
+                            </h2>
+                            <p class="login-subtitle">
+                                Sign in to access your School account
+                            </p>
+                        </div>
+
+                        <form asp-controller="Login" asp-action="Login" method="post">
+
+                            <div class="mb-3">
+                                <label class="form-label">
+                                    Username
+                                </label>
+
+                                <input asp-for="Username"
+                                       class="form-control"
+                                       placeholder="Enter Username" />
+
+                                <span asp-validation-for="Username"
+                                      class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">
+                                    Password
+                                </label>
+
+                                <input asp-for="Password"
+                                       type="password"
+                                       class="form-control"
+                                       placeholder="Enter Password" />
+
+                                <span asp-validation-for="Password"
+                                      class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    <input asp-for="RememberMe"
+                                           class="form-check-input"
+                                           type="checkbox" />
+
+                                    <label asp-for="RememberMe"
+                                           class="form-check-label">
+                                        Remember Me
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="d-grid mb-4">
+                                <button type="submit"
+                                        class="btn btn-warning btn-login">
+                                    Login
+                                </button>
+                            </div>
+
+                            <div class="login-links d-flex justify-content-between">
+                                <a asp-controller="Login"
+                                   asp-action="ForgotPassword"
+                                   class="text-primary">
+                                    Forgot Password?
+                                </a>
+
+                                <span>Don't have an account? </span>
+                                <a asp-controller="Login" asp-action="SignUp" class="text-success">
+                                    Sign Up
+                                </a>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "timeOut": "4000",
+            "extendedTimeOut": "1000",
+            "preventDuplicates": true,
+            "newestOnTop": true
+        };
+    </script>
+
+    @if (TempData["Success"] != null)
+    {
+        <script>
+            toastr.success('@TempData["Success"]');
+        </script>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <script>
+            toastr.error('@TempData["Error"]');
+        </script>
+    }
+
+    @if (TempData["Warning"] != null)
+    {
+        <script>
+            toastr.warning('@TempData["Warning"]');
+        </script>
+    }
+
+    @if (TempData["Info"] != null)
+    {
+        <script>
+            toastr.info('@TempData["Info"]');
+        </script>
+    }
+
+</body>
+</html>
